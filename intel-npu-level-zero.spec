@@ -1,5 +1,5 @@
 Name:		intel-npu-level-zero
-Version:	1.16.0
+Version:	1.17.0
 Release:	2%{?dist}
 Summary:	Intel Neural Processing Unit Driver for Linux
 
@@ -11,10 +11,10 @@ License:	MIT AND Apache-2.0
 URL:		https://github.com/intel/linux-npu-driver
 Source:		%{url}/archive/refs/tags/v%{version}.tar.gz
 # this version vendors the below commit which does not correspond to any tag or release in the secondary repo
-%define lz_npu_exts_version c0156a3390ae39671ff8f2a6f5471f04bb65bb12
+%define lz_npu_exts_version d16f5d09fd695c1aac0c29524881fec7ccf7d27e
 Source:		https://github.com/intel/level-zero-npu-extensions/archive/%{lz_npu_exts_version}.tar.gz
 # this version vendors the below commit which should be tagged except Intel forgot to push them for recent releases
-%define npu_elf_version ce501d3059c81fd6bd0ad7165ab823838fa5d851
+%define npu_elf_version 50f2b13dbb6dd435c3e2ef6f8abb7393633bfcdd
 Source:		https://github.com/openvinotoolkit/npu_plugin_elf/archive/%{npu_elf_version}.tar.gz
 # Patch out the vendored deps
 Patch:		0001-Add-USE_SYSTEM_LIBRARIES-option-for-distro-packagers.patch
@@ -143,6 +143,8 @@ sed -i "s/#include \"ze_api.h\"/#include <level_zero\/ze_api.h>/" third_party/le
 
 
 %changelog
+* Tue May 20 2025 Daniel Pawlik <pawlik.dan@gmail.com> - 1.17.0-1
+- Upgrade to latest version
 * Mon Apr 7 2025 Alexander F. Lent <lx@xanderlent.com> - 1.16.0-1
 - Upgrade to latest version
 - Rename the intel-npu-firmware package to intel-npu-firmware-upstream
